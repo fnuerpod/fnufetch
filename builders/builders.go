@@ -90,7 +90,7 @@ func BuildUptime() string {
 }
 
 func BuildPackages(os_struct *os_release.OSRelease) string {
-	return "${c4}pkgs ${c0}  " + strconv.Itoa(package_mgr.GetPackageCount())
+	return "${c4}pkgs ${c0}  " + strconv.Itoa(package_mgr.GetPackageCount(os_struct))
 }
 
 func BuildMemory() string {
