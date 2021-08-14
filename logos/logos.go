@@ -45,6 +45,15 @@ var SystemLogos map[string][]string = map[string][]string{
 		`${c4}  /   |  |  -\`,
 		`${c4} /_-''    ''-_\`,
 	},
+	"Ubuntu": []string{
+		"  ${c3}         _",
+		"  ${c3}     ---(_)",
+		"  ${c3} _/  ---  \\",
+		"  ${c3}(_) |   |",
+		"   ${c3} \\  --- _/",
+		"     ${c3} ---(_)",
+		"        ",
+	},
 }
 
 var DefaultLogo []string = []string{

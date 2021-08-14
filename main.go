@@ -15,15 +15,15 @@ import (
 func main() {
 	os_struct := os_release.NewOSR()
 
-	forceDistroFlag := flag.String("force_distro", os_struct.Name, "Forces distribution name - overrides /etc/os-release Name variable.")
+	forceDistroFlag := flag.String("force_distro", os_struct.PrettyName, "Forces distribution name - overrides /etc/os-release PrettyName variable.")
 
 	flag.Parse()
 
 	if *forceDistroFlag != "" {
 		// force flag set.
-		os_struct.Name = *forceDistroFlag
+		os_struct.PrettyName = *forceDistroFlag
 	}
-	sys_logo := logos.GetLogo(os_struct.Name)
+	sys_logo := logos.GetLogo(os_struct.PrettyName)
 
 	// make strings for injection
 	inject_strings := []string{
