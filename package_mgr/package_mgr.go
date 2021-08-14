@@ -31,4 +31,7 @@ func GetPackageCount(osr *os_release.OSRelease) int {
 		return len(string_slice) - 1
 	}
 
+	// no conditions met... return 0.
+	return 0
+
 }
