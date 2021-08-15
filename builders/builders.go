@@ -50,12 +50,12 @@ func BuildHeader() string {
 
 	username := ""
 
-	user, err := user.Current()
+	usr, err := user.Current()
 
 	if err != nil {
 		username = "UNKNOWN"
 	} else {
-		username = user.Username
+		username = usr.Username
 	}
 
 	hostname_string := "\u001b[35;1m" + username + "\u001b[0m@" + "\u001b[35;1m" + hostname
@@ -86,7 +86,7 @@ func BuildKernel() string {
 }
 
 func BuildUptime() string {
-	return "${c4}uptime ${c0}" + humanizeDuration(sysinfo.Get().Uptime)
+	return "${c4}uptime ${c0}" + sysinfo.Get().Uptime.String()
 }
 
 func BuildPackages(os_struct *os_release.OSRelease) string {

@@ -2,6 +2,7 @@
 package logos
 
 import (
+	"regexp"
 	"strings"
 )
 
@@ -36,7 +37,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 var SystemLogos map[string][]string = map[string][]string{
-	"Arch Linux": []string{
+	`[Aa]rch*`: []string{ // Arch Linux
 		`${c6}       /\`,
 		`${c6}      /  \`,
 		`${c6}     /\   \`,
@@ -45,7 +46,7 @@ var SystemLogos map[string][]string = map[string][]string{
 		`${c4}  /   |  |  -\`,
 		`${c4} /_-''    ''-_\`,
 	},
-	"Ubuntu": []string{
+	`\b[Uu]buntu*\b`: []string{ // Ubuntu
 		"  ${c3}         _",
 		"  ${c3}     ---(_)",
 		"  ${c3} _/  ---  \\",
@@ -86,11 +87,20 @@ func ColorReplace(logo []string) []string {
 }
 
 func GetLogo(name string) []string {
-	logo, ok := SystemLogos[name]
 
-	if !ok {
-		return ColorReplace(DefaultLogo)
+	for k, e := range SystemLogos {
+		regex := regexp.MustCompile(k)
+		matches := regex.FindAllString(name, -1)
+
+		if len(matches) > 0 {
+			// match found. return this one.
+			return ColorReplace(e)
+		}
 	}
 
-	return ColorReplace(logo)
+	// if not returned after that loop, there is no logo.
+	// ie. return default.
+
+	return ColorReplace(DefaultLogo)
+
 }
